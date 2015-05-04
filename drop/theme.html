@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<link href="<{$xoops_url}>/favicon.ico" rel="SHORTCUT ICON" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+//-->
+
+function promptUser()
+{
+
+	xoopsGetElementById("leftcolumn").style.filter = "gray()";
+	xoopsGetElementById("centercolumn").style.filter = "gray()";
+
+<{if $xoops_showrblock == 1}>
+	xoopsGetElementById("rightcolumn").style.filter = "gray()";
+<{/if}>
+	xoopsGetElementById("headerbar").style.filter = "gray()";
+	xoopsGetElementById("headerbanner").style.filter = "gray()";
+	xoopsGetElementById("footerbar").style.filter = "gray()";
+
+	javascript=window.confirm('Are You Sure ?'); 
+	if (javascript==true)
+	{
+		return true;		
+	}
+	else 
+	{
+
+<{if $xoops_showrblock == 1}>
+		xoopsGetElementById("rightcolumn").style.filter = "color()";
+<{/if}>
+		xoopsGetElementById("headerbar").style.filter = "color()";
+		xoopsGetElementById("leftcolumn").style.filter = "color()";
+		xoopsGetElementById("centercolumn").style.filter = "color()";
+		xoopsGetElementById("headerbanner").style.filter = "color()";
+		xoopsGetElementById("footerbar").style.filter = "color()";
+
+		return false;
+	}
+}
+
+</script>
+
+<body>
+
+<!--Headers-->
+
+<table cellspacing="0">
+<tr id="header">
+	<td id="headerlogo"><a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>logo.gif" width="150" height="80" alt="" /></a></td>
+	<td id="headerbanner"><{$xoops_banner}></td>
+</tr>
+<tr>
+	<td id="headerbar" colspan="2">Welcome <{if ($xoops_uname=="")}>Guest<{else}><{$xoops_uname}><{/if}></td>
+</tr>
+</table>
+<br>
+<!--End Of Headers-->
+<!--Menus-->
+
+<table cellspacing="0" cellpadding="0">
+<tr>
+
+	<td id="leftcolumn">
+	<{foreach item=block from=$xoops_lblocks}>
+	<div class="blockWrapper">
+	<div class="blockTitle"><a href="" onClick="return false"><{$block.title}></a></div>
+	<div class="blockContent"><{$block.content}></div>
+	</div><br>
+	<{/foreach}>
+	</td>
+
+	<td id="centercolumn">
+
+	<!-- Display center blocks if any -->
+	<{if $xoops_showcblock == 1}>
+	
+	<table cellspacing="0">
+		<tr>
+		<td id="centerCcolumn" colspan="2">
+
+	            	<!-- Start center-center blocks loop -->
+            		<{foreach item=block from=$xoops_ccblocks}>
+		<div class="blockWrapper">
+		<div class="blockTitle"><{$block.title}></div>
+		<div class="blockContent"><{$block.content}></div>
+		</div><br>
+            		<{/foreach}>
+            		<!-- End center-center blocks loop -->
+
+            		</td>
+          		</tr>
+
+          		<tr>
+            		<td id="centerLcolumn">
+            		<!-- Start center-left blocks loop -->
+              	<{foreach item=block from=$xoops_clblocks}>
+		<div class="blockTitle"><{$block.title}></div>
+		<div class="blockContent"><{$block.content}></div>
+              	<{/foreach}>
+            		<!-- End center-left blocks loop -->
+		</td>
+
+		<!-- Start center-left blocks loop -->
+
+		<td id="centerRcolumn">
+
+	            	<!-- Start center-right blocks loop -->
+              	<{foreach item=block from=$xoops_crblocks}>
+		<div class="blockTitle"><{$block.title}></div>
+		<div class="blockContent"><{$block.content}></div>
+	              <{/foreach}>
+	            	<!-- End center-right blocks loop -->
+
+	            	</td>
+	</table>
+	<{/if}>
+
+        	<div id="content"><br>
+          	<{$xoops_contents}>
+	</div>
+	</td>
+
+</tr>
+</table>
+
+<!--End Of Menus-->
+
+<table cellspacing="0">
+<tr id="footerbar">
+      	<td><a href="http://www.xoops.org/" target="_blank"><img src="<{$xoops_imageurl}>poweredby.gif" alt="" /></a></td>
+</tr>
+</table>
+</body>
+</html>
